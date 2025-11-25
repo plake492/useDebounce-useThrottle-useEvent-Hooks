@@ -37,8 +37,6 @@ export default function ComponentRenderCycle({
     const time = getTime();
     console.log('useLayoutEffect fired: ', time);
     console.log('elRef() ==>', elRef.current);
-    elRef.current!.style.borderWidth = '30px';
-
     // elRef.current.style.borderWidth = '30px';
 
     return () => {

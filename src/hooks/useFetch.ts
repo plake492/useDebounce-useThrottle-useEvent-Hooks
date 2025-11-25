@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 
-export function useFetch(url: string, options: RequestInit, cb?: (res: unknown, ...args: unknown[]) => void) {
+export function useFetch(url: string, options?: RequestInit, cb?: (res: unknown, ...args: unknown[]) => void) {
   const cbRef = useRef(cb);
   const controllerRef = useRef<null | AbortController>(null);
 

@@ -1,12 +1,13 @@
 // src/index.ts
 import express, { type Application, type Request, type Response } from 'express';
 import products from './data.ts';
+import { v4 as uuidv4 } from 'uuid';
 
 const SECRET_WORDS = ['Morder', 'Rivendell', 'Gondor', 'Eregion', 'Rohon'];
 let currIndex = 0;
 
 const app: Application = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -42,7 +43,7 @@ app.post('/api/track', (req: Request, res: Response) => {
 app.get('/api/get-products', (req: Request, res: Response) => {
   console.log('products ==>', products);
 
-  return res.status(200).json(products);
+  return res.status(200).json(products.map((p) => ({ ...p, uuid: uuidv4() })));
 });
 // Start the server
 app.listen(port, () => {
